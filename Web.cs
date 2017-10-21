@@ -31,6 +31,7 @@ namespace WolfLib
                  * Youtube and Lives
                  * Twitch
                  * Dailymotion
+                 * Vimeo
                  * 
                  **/
                 if (host == "www.youtube.com")
@@ -41,6 +42,10 @@ namespace WolfLib
                 else if (host == "www.dailymotion.com")
                 {
                     return URL.Replace("www.dailymotion.com/video", "www.dailymotion.com/embed/video");
+                }
+                else if (host == "vimeo.com")
+                {
+                    return URL.Replace("vimeo.com/", "player.vimeo.com/video/");
                 }
                 else if (host == "go.twitch.tv")
                 {
