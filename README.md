@@ -10,8 +10,6 @@ Developed by NaolShow (Loan.J)
 
 Under GNU GENERAL PUBLIC LICENSE
 
-![Me](https://image.noelshack.com/fichiers/2017/42/4/1508432796-logo.jpg)
-
 # ! HELP !
 
 You can send an help request in Issues
