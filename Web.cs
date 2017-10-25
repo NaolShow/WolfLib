@@ -17,7 +17,6 @@ namespace WolfLib
          *  
          **/
 
-        // Web
         public static string convertToEmbed(String URL)
         {
             try
@@ -63,7 +62,6 @@ namespace WolfLib
             }
         }
 
-        // DownloadStringFile
         public static string downloadString(String URL)
         {
             WebClient downloadString = new WebClient();

@@ -17,13 +17,12 @@ namespace WolfLib
          *  
          **/
 
-        // Encryption
-        public static string encryptToMD5(String strText)
+        public static string encryptToMD5(String stringToEncrypt)
         {
             try
             {
                 Byte[] buffer;
-                buffer = Encoding.Default.GetBytes(strText);
+                buffer = Encoding.Default.GetBytes(stringToEncrypt);
                 MD5CryptoServiceProvider check = new MD5CryptoServiceProvider();
                 Byte[] somme;
                 somme = check.ComputeHash(buffer);
@@ -80,6 +79,33 @@ namespace WolfLib
             {
                 throw ex;
             }
+        }
+
+        public static String encryptToBinary(String stringToEncrypt)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            foreach (char L in stringToEncrypt.ToCharArray())
+            {
+                stringBuilder.Append(Convert.ToString(L, 2).PadLeft(8, '0'));
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static string decryptFromBinary(String stringToDecrypt)
+        {
+            stringToDecrypt = stringToDecrypt.Replace(" ", "");
+            List<Byte> list = new List<Byte>();
+
+            for (int i = 0; i < stringToDecrypt.Length; i += 8)
+            {
+                String t = stringToDecrypt.Substring(i, 8);
+
+                list.Add(Convert.ToByte(t, 2));
+            }
+
+            return Encoding.UTF8.GetString(list.ToArray());
         }
 
     }

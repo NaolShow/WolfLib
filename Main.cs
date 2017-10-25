@@ -17,8 +17,8 @@ namespace WolfLib
          *  https://github.com/NaolShow/WolfLib
          *  
          **/
-
-        public static String VERSION = "1.0.3";
+        
+        private static String VERSION = "1.0.4";
 
         // Get version
         public static String getVersion()
