@@ -46,7 +46,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        private void encryptFile(string inputFile, string outputFile, string key)
+        public static void encryptFile(string inputFile, string outputFile, string key)
         {
 
             try
@@ -81,7 +81,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        private void decryptFile(string inputFile, string outputFile, string key)
+        public static void decryptFile(string inputFile, string outputFile, string key)
         {
             try
             {
