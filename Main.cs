@@ -17,8 +17,8 @@ namespace WolfLib
          *  https://github.com/NaolShow/WolfLib
          *  
          **/
-        
-        private static String VERSION = "1.0.4";
+
+        private static String VERSION = "1.0.5";
 
         // Get version
         public static String getVersion()
@@ -29,7 +29,14 @@ namespace WolfLib
         // Get lasted version
         public static String getLastedVersion()
         {
-            return Web.downloadString("https://dl.dropboxusercontent.com/s/lt15uyw6ibnphg8/lastedVersion.txt?dl=0");
+            try
+            {
+                return Web.downloadString("https://dl.dropboxusercontent.com/s/lt15uyw6ibnphg8/lastedVersion.txt?dl=0");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

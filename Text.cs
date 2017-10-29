@@ -83,30 +83,43 @@ namespace WolfLib
 
         public static String encryptToBinary(String stringToEncrypt)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            foreach (char L in stringToEncrypt.ToCharArray())
+            try
             {
-                stringBuilder.Append(Convert.ToString(L, 2).PadLeft(8, '0'));
-            }
+                StringBuilder stringBuilder = new StringBuilder();
 
-            return stringBuilder.ToString();
+                foreach (char L in stringToEncrypt.ToCharArray())
+                {
+                    stringBuilder.Append(Convert.ToString(L, 2).PadLeft(8, '0'));
+                }
+
+                return stringBuilder.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static string decryptFromBinary(String stringToDecrypt)
         {
-            stringToDecrypt = stringToDecrypt.Replace(" ", "");
-            List<Byte> list = new List<Byte>();
-
-            for (int i = 0; i < stringToDecrypt.Length; i += 8)
+            try
             {
-                String t = stringToDecrypt.Substring(i, 8);
+                stringToDecrypt = stringToDecrypt.Replace(" ", "");
+                List<Byte> list = new List<Byte>();
 
-                list.Add(Convert.ToByte(t, 2));
+                for (int i = 0; i < stringToDecrypt.Length; i += 8)
+                {
+                    String t = stringToDecrypt.Substring(i, 8);
+
+                    list.Add(Convert.ToByte(t, 2));
+                }
+
+                return Encoding.UTF8.GetString(list.ToArray());
             }
-
-            return Encoding.UTF8.GetString(list.ToArray());
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-
     }
 }

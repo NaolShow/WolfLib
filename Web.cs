@@ -64,8 +64,15 @@ namespace WolfLib
 
         public static string downloadString(String URL)
         {
-            WebClient downloadString = new WebClient();
-            return downloadString.DownloadString(URL);
+            try
+            {
+                WebClient downloadString = new WebClient();
+                return downloadString.DownloadString(URL);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }
