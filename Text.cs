@@ -42,7 +42,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static string decryptFromB64(String stringToDecrypt, string key)
+        public static string decryptFromB64(String stringToDecrypt, String key)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static string encryptToB64(String stringToEncrypt, string key)
+        public static string encryptToB64(String stringToEncrypt, String key)
         {
             try
             {
@@ -120,6 +120,13 @@ namespace WolfLib
             {
                 throw ex;
             }
+        }
+
+        public static string getRandomString(int length)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

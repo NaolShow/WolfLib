@@ -46,7 +46,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static void encryptFile(string inputFile, string outputFile, string key)
+        public static void encryptFile(String inputFile, String outputFile, String key)
         {
 
             try
@@ -81,7 +81,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static void decryptFile(string inputFile, string outputFile, string key)
+        public static void decryptFile(String inputFile, String outputFile, String key)
         {
             try
             {
@@ -110,6 +110,34 @@ namespace WolfLib
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        // /!\ KEY WITH 8Chars !
+        public void encryptFolder(String inputFolder, String outputFolder, String key)
+        {
+            if (!Directory.Exists(outputFolder))
+            {
+                Directory.CreateDirectory(outputFolder);
+            }
+            foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+            {
+                String fileName = file.Replace(inputFolder, "");
+                encryptFile(inputFolder + fileName, outputFolder + fileName, key);
+            }
+        }
+
+        // /!\ KEY WITH 8Chars !
+        public void decryptFolder(String inputFolder, String outputFolder, String key)
+        {
+            if (!Directory.Exists(outputFolder))
+            {
+                Directory.CreateDirectory(outputFolder);
+            }
+            foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+            {
+                String fileName = file.Replace(inputFolder, "");
+                decryptFile(inputFolder + fileName, outputFolder + fileName, key);
             }
         }
 
