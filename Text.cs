@@ -17,7 +17,7 @@ namespace WolfLib
          *  
          **/
 
-        public static string encryptToMD5(String stringToEncrypt)
+        public static string EncryptToMD5(String stringToEncrypt)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static string decryptFromB64(String stringToDecrypt, String key)
+        public static string DecryptFromB64(String stringToDecrypt, String key)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static string encryptToB64(String stringToEncrypt, String key)
+        public static string EncryptToB64(String stringToEncrypt, String key)
         {
             try
             {
@@ -81,18 +81,17 @@ namespace WolfLib
             }
         }
 
-        public static String encryptToBinary(String stringToEncrypt)
+        public static String EncryptToBinary(String stringToEncrypt)
         {
             try
             {
-                StringBuilder stringBuilder = new StringBuilder();
-
+                StringBuilder stringBuild = new StringBuilder();
                 foreach (char L in stringToEncrypt.ToCharArray())
                 {
-                    stringBuilder.Append(Convert.ToString(L, 2).PadLeft(8, '0'));
+                    stringBuild.Append(Convert.ToString(L, 2).PadLeft(8, '0'));
                 }
 
-                return stringBuilder.ToString();
+                return stringBuild.ToString();
             }
             catch (Exception ex)
             {
@@ -100,7 +99,7 @@ namespace WolfLib
             }
         }
 
-        public static string decryptFromBinary(String stringToDecrypt)
+        public static string DecryptFromBinary(String stringToDecrypt)
         {
             try
             {
@@ -122,7 +121,7 @@ namespace WolfLib
             }
         }
 
-        public static string getRandomString(int length)
+        public static string GetRandomString(int length)
         {
             Random random = new Random();
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

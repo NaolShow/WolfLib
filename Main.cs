@@ -18,20 +18,20 @@ namespace WolfLib
          *  
          **/
 
-        private static String VERSION = "1.0.7";
+        private static String VERSION = "1.0.8";
 
         // Get version
-        public static String getVersion()
+        public static String GetVersion()
         {
             return VERSION;
         }
 
         // Get lasted version
-        public static String getLastedVersion()
+        public static String GetLastedVersion()
         {
             try
             {
-                return Web.downloadString("https://dl.dropboxusercontent.com/s/lt15uyw6ibnphg8/lastedVersion.txt?dl=0");
+                return Web.DownloadString("https://dl.dropboxusercontent.com/s/lt15uyw6ibnphg8/lastedVersion.txt?dl=0");
             }
             catch (Exception ex)
             {

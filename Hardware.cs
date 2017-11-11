@@ -23,7 +23,7 @@ namespace WolfLib
 
 
         // Yes, it's not hardware... But........
-        public static string getMACAddress()
+        public static string GetMACAddress()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace WolfLib
             }
         }  
 
-        public static String getProcessorId()
+        public static String GetProcessorId()
         {
             try
             {
@@ -67,7 +67,7 @@ namespace WolfLib
             }
         }
 
-        public static String getHDDSerialNumber()
+        public static String GetHDDSerialNumber()
         {
             try
             {
@@ -86,7 +86,7 @@ namespace WolfLib
             }
         }
 
-        public static String getBoardMaker()
+        public static String GetBoardMaker()
         {
             try
             {
@@ -102,5 +102,27 @@ namespace WolfLib
                 throw ex;
             }
         }
+
+        public static Double GetRAM()
+        {
+            try
+            {
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT TotalPhysicalMemory FROM Win32_ComputerSystem");
+                foreach (ManagementObject queryObj in searcher.Get())
+                {
+                    double dblMemory;
+                    if (double.TryParse(Convert.ToString(queryObj["TotalPhysicalMemory"]), out dblMemory))
+                    {
+                        return dblMemory / (1024 * 1024 * 1024);
+                    }
+                }
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

@@ -19,7 +19,7 @@ namespace WolfLib
          **/
 
         // Files
-        public static string getAtLine(String path, int line)
+        public static string GetLine(String path, int line)
         {
             try
             {
@@ -31,13 +31,41 @@ namespace WolfLib
             }
         }
 
-        public static void writeAtLine(String path, String text, int line)
+        public static void WriteLine(String path, String text, int line)
         {
             try
             {
-                List<string> lines = System.IO.File.ReadAllLines(path).ToList<string>();
-                lines.Insert(line, text);
-                System.IO.File.WriteAllLines(path, lines);
+                string[] arrLine = File.ReadAllLines(path);
+                arrLine[line] = text;
+                File.WriteAllLines(path, arrLine);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void RemoveLine(String path, int line)
+        {
+            try
+            {
+                List<String> file = new List<String>(File.ReadAllLines(path));
+                file.RemoveAt(line);
+                File.WriteAllLines(path, file);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static void InsertLine(String path, String text, int line)
+        {
+            try
+            {
+                List<String> file = new List<String>(File.ReadAllLines(path));
+                file.Insert(line, text);
+                File.WriteAllLines(path, file);
             }
             catch (Exception ex)
             {
@@ -46,7 +74,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static void encryptFile(String inputFile, String outputFile, String key)
+        public static void EncryptFile(String inputFile, String outputFile, String key)
         {
 
             try
@@ -81,7 +109,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public static void decryptFile(String inputFile, String outputFile, String key)
+        public static void DecryptFile(String inputFile, String outputFile, String key)
         {
             try
             {
@@ -114,7 +142,7 @@ namespace WolfLib
         }
 
         // /!\ KEY WITH 8Chars !
-        public void encryptFolder(String inputFolder, String outputFolder, String key)
+        public void EncryptFolder(String inputFolder, String outputFolder, String key)
         {
             if (!Directory.Exists(outputFolder))
             {
@@ -123,12 +151,12 @@ namespace WolfLib
             foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
             {
                 String fileName = file.Replace(inputFolder, "");
-                encryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                EncryptFile(inputFolder + fileName, outputFolder + fileName, key);
             }
         }
 
         // /!\ KEY WITH 8Chars !
-        public void decryptFolder(String inputFolder, String outputFolder, String key)
+        public void DecryptFolder(String inputFolder, String outputFolder, String key)
         {
             if (!Directory.Exists(outputFolder))
             {
@@ -137,7 +165,7 @@ namespace WolfLib
             foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
             {
                 String fileName = file.Replace(inputFolder, "");
-                decryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                DecryptFile(inputFolder + fileName, outputFolder + fileName, key);
             }
         }
 

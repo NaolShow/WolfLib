@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,7 @@ namespace WolfLib
          *  
          **/
 
-        public static string convertToEmbed(String URL)
+        public static string ConvertToEmbed(String URL)
         {
             try
             {
@@ -62,12 +63,47 @@ namespace WolfLib
             }
         }
 
-        public static string downloadString(String URL)
+        public static string DownloadString(String URL)
         {
             try
             {
                 WebClient downloadString = new WebClient();
                 return downloadString.DownloadString(URL);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /**
+          * 
+          * SMTP:
+          * 
+          * Yahoo: mail.yahoo.com
+          * Wanadoo: smtp.wanadoo.fr
+          * Outlook.com (former Hotmail): smtp.live.com
+          * Orange: smtp.orange.fr
+          * LaPoste: smtp.laposte.fr
+          * Gmail: smtp.gmail.com
+          * Free: smtp.free.fr
+          * Bouygtel: smtp.bouygtel.fr
+          * 
+          **/
+        public static void SendMail(String SMTP, int portDefault587, String senderEmail, String senderPassword, String destination, String subject, String mailText)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient(SMTP);
+                mail.From = new MailAddress(senderEmail);
+                mail.To.Add(destination);
+                mail.Subject = subject;
+                mail.Body = mailText;
+                SmtpServer.Port = portDefault587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential(senderEmail, senderPassword);
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
             }
             catch (Exception ex)
             {
