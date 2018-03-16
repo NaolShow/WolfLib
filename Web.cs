@@ -52,6 +52,10 @@ namespace WolfLib
                     string gotwitchreplace = URL.Replace("http://go.twitch.tv/", "");
                     return "player.twitch.tv/?channel=" + gotwitchreplace.Replace("https://go.twitch.tv/", "");
                 }
+                else if (host == "dropbox.com")
+                {
+                    return URL.Replace("www.dropbox.com", "dl.dropboxusercontent.com");
+                }
                 else
                 {
                     return "error";

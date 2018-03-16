@@ -73,6 +73,45 @@ namespace WolfLib
             }
         }
 
+        // Get a value (myvaluename: myvalue)
+        public static String GetValue(String path, String valueName)
+        {
+            var lines = File.ReadAllLines(path);
+            if (valueName.Substring(valueName.Length - 1, 1) != ":")
+            {
+                valueName = valueName + ":";
+            }
+            foreach (var theLine in lines)
+            {
+                if (theLine.StartsWith(valueName))
+                {
+                    String[] value = theLine.Split(new char[] { ':' }, 2);
+                    value[1] = value[1].Remove(0, value[1].IndexOf(' ') + 1);
+                    return value[1];
+                }
+            }
+            return "error";
+        }
+
+        // Replace value (myvaluename: myvalue)
+        public static void SetValue(String path, String valueName, String valueReplacement)
+        {
+            if (valueName.Substring(valueName.Length - 1, 1) != ":")
+            {
+                valueName = valueName + ":";
+            }
+            int count = 0;
+            foreach (var theLine in File.ReadAllLines(path))
+            {
+                if (theLine.StartsWith(valueName))
+                {
+                    String[] value = theLine.Split(new char[] { ':' }, 2);
+                    WolfLib.Files.WriteLine(path, value[0] + ": " + valueReplacement, count);
+                }
+                count++;
+            }
+        }
+
         // /!\ KEY WITH 8Chars !
         public static void EncryptFile(String inputFile, String outputFile, String key)
         {
@@ -144,28 +183,42 @@ namespace WolfLib
         // /!\ KEY WITH 8Chars !
         public void EncryptFolder(String inputFolder, String outputFolder, String key)
         {
-            if (!Directory.Exists(outputFolder))
+            try
             {
-                Directory.CreateDirectory(outputFolder);
+                if (!Directory.Exists(outputFolder))
+                {
+                    Directory.CreateDirectory(outputFolder);
+                }
+                foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+                {
+                    String fileName = file.Replace(inputFolder, "");
+                    EncryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                }
             }
-            foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+            catch (Exception ex)
             {
-                String fileName = file.Replace(inputFolder, "");
-                EncryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                throw ex;
             }
         }
 
         // /!\ KEY WITH 8Chars !
         public void DecryptFolder(String inputFolder, String outputFolder, String key)
         {
-            if (!Directory.Exists(outputFolder))
+            try
             {
-                Directory.CreateDirectory(outputFolder);
+                if (!Directory.Exists(outputFolder))
+                {
+                    Directory.CreateDirectory(outputFolder);
+                }
+                foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+                {
+                    String fileName = file.Replace(inputFolder, "");
+                    DecryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                }
             }
-            foreach (String file in Directory.GetFiles(inputFolder, "*", SearchOption.AllDirectories))
+            catch (Exception ex)
             {
-                String fileName = file.Replace(inputFolder, "");
-                DecryptFile(inputFolder + fileName, outputFolder + fileName, key);
+                throw ex;
             }
         }
 

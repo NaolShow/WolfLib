@@ -23,7 +23,7 @@ namespace WolfLib
 
 
         // Yes, it's not hardware... But........
-        public static string GetMACAddress()
+        public static String GetMACAddress()
         {
             try
             {
