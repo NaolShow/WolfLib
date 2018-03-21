@@ -15,10 +15,12 @@ namespace WolfLib
          *  Developed by NaolShow (Loan.J)
          *  Sources and DLL on github.com
          *  https://github.com/NaolShow/WolfLib
+         *  WebSite:
+         *  http://towolf.livehost.fr/wolflib/
          *  
          **/
 
-        private static String VERSION = "1.0.9";
+        private static String VERSION = "1.1.0";
 
         // Get version
         public static String GetVersion()
@@ -27,7 +29,7 @@ namespace WolfLib
         }
 
         // Get lasted version
-        public static String GetLastedVersion()
+        public static String GetLatestVersion()
         {
             try
             {

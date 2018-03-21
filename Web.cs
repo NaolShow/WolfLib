@@ -15,6 +15,8 @@ namespace WolfLib
          *  Developed by NaolShow (Loan.J)
          *  Sources and DLL on github.com
          *  https://github.com/NaolShow/WolfLib
+         *  WebSite:
+         *  http://towolf.livehost.fr/wolflib/
          *  
          **/
 
@@ -32,6 +34,7 @@ namespace WolfLib
                  * Twitch
                  * Dailymotion
                  * Vimeo
+                 * DropBox
                  * 
                  **/
                 if (host == "www.youtube.com")
