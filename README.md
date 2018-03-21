@@ -1,7 +1,6 @@
 # WolfLib                                                                                      
                                                                                      
-WolfPlayer is a C# library developped by Loan.J from ToWolf                                                                             
-With it you can watch your videos/series/films!                                                         
+WolfLib is a C# library developped by Loan.J from ToWolf                                                                                  
                                                                                                                   
 ToWolf Youtube: https://www.youtube.com/channel/UC8phavWMWiG8_JnTFli4b_g                                                         
 ToWolf Website: http://towolf.livehost.fr/                                                         
