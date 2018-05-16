@@ -97,7 +97,7 @@ namespace WolfLib
           * Bouygtel: smtp.bouygtel.fr
           * 
           **/
-        public static void SendMail(String SMTP, int portDefault587, String senderEmail, String senderPassword, String destination, String subject, String mailText)
+        public static void SendMail(String SMTP, int portDefault587, String senderEmail, String senderPassword, String destination, String subject, String mailText, List<String> attachments = null)
         {
             try
             {
@@ -107,6 +107,16 @@ namespace WolfLib
                 mail.To.Add(destination);
                 mail.Subject = subject;
                 mail.Body = mailText;
+
+                if (attachments != null)
+                {
+                    foreach (String attachmentPath in attachments)
+                    {
+                        Attachment attachment = new Attachment(attachmentPath);
+                        mail.Attachments.Add(attachment);
+                    }
+                }
+
                 SmtpServer.Port = portDefault587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential(senderEmail, senderPassword);
                 SmtpServer.EnableSsl = true;
@@ -117,6 +127,5 @@ namespace WolfLib
                 throw ex;
             }
         }
-
     }
 }

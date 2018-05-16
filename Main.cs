@@ -20,7 +20,7 @@ namespace WolfLib
          *  
          **/
 
-        private static String VERSION = "1.1.0";
+        private static String VERSION = "1.1.1";
 
         // Get version
         public static String GetVersion()

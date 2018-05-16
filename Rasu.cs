@@ -33,16 +33,17 @@ namespace WolfLib
         /// <returns>
         /// Return List<String>
         /// </returns>
-        public static List<String> GetList(String path, String valueName)
+        public static List<String> GetList(String pathOrText, String valueName)
         {
-            var lines = File.ReadAllLines(path);
-            Boolean check = false;
+            String[] lines = null;
+            if (File.Exists(pathOrText)) { lines = File.ReadAllLines(pathOrText); }
+            else { lines = pathOrText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries); }
+
             List<String> returnValue = new List<String>();
             if (valueName.Substring(valueName.Length - 1, 1) != ":") { valueName = valueName + ":"; }
             foreach (var theLine in lines)
             {
-                if (theLine.StartsWith(valueName)) { check = true; }
-                else if (check == true)
+                if (theLine.StartsWith(valueName))
                 {
                     String line = theLine.Replace("\u0009", "").TrimStart();
                     if (line.StartsWith("-"))
@@ -61,9 +62,11 @@ namespace WolfLib
         /// <returns>
         /// Return String
         /// </returns>
-        public static String Get(String path, String valueName)
+        public static String Get(String pathOrText, String valueName)
         {
-            var lines = File.ReadAllLines(path);
+            String[] lines = null;
+            if (File.Exists(pathOrText)) { lines = File.ReadAllLines(pathOrText); }
+            else { lines = pathOrText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries); }
             if (valueName.Substring(valueName.Length - 1, 1) != ":") { valueName = valueName + ":"; }
             foreach (var theLine in lines)
             {
@@ -103,13 +106,15 @@ namespace WolfLib
         /// <returns>
         /// Return Boolean
         /// </returns>
-        public static Boolean Check(String path, String valueName)
+        public static Boolean Check(String pathOrText, String valueName)
         {
-            var lines = File.ReadAllLines(path);
+            String[] lines = null;
+            if (File.Exists(pathOrText)) { lines = File.ReadAllLines(pathOrText); }
+            else { lines = pathOrText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries); }
             int count = 0;
             if (valueName.Substring(valueName.Length - 1, 1) != ":") { valueName = valueName + ":"; }
             foreach (var theLine in lines) { if (!theLine.StartsWith(valueName)) { count++; } else { break; } }
-            if (File.ReadLines(path).Count() != count) { return true; } else { return false; }
+            if (File.ReadLines(pathOrText).Count() != count) { return true; } else { return false; }
         }
 
         /// <summary>
@@ -127,11 +132,12 @@ namespace WolfLib
         /// Merge value file
         /// Check wiki for more informations
         /// </summary>
-        public static void MergeFile(String oldfile, String newfile)
+        public static void MergeFile(String oldfileOrText, String newfile)
         {
-            var oldfilelines = File.ReadAllLines(oldfile);
-            var newfilelines = File.ReadAllLines(newfile);
-            foreach (var theLine in oldfilelines)
+            String[] lines = null;
+            if (File.Exists(oldfileOrText)) { lines = File.ReadAllLines(oldfileOrText); }
+            else { lines = oldfileOrText.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries); }
+            foreach (var theLine in lines)
             {
                 if (!theLine.StartsWith("//") && theLine != "")
                 {
