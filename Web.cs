@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WolfLib
 {
-    public class Web
+    public static class Web
     {
 
         /**

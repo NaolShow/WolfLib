@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WolfLib
 {
-    public class Files
+    public static class Files
     {
 
         /**

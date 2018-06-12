@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WolfLib
 {
-    public class Maths
+    public static class Maths
     {
 
         /**

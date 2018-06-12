@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace WolfLib
 {
-    public class Hardware
+    public static class Hardware
     {
 
         /**

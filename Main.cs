@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WolfLib
 {
-    public class Main
+    public static class Main
     {
 
         /**
@@ -20,7 +20,7 @@ namespace WolfLib
          *  
          **/
 
-        private static String VERSION = "1.1.1";
+        private static String VERSION = "1.1.2";
 
         // Get version
         public static String GetVersion()
