@@ -16,7 +16,9 @@ WolfLib is licensed under the GNU General Public License 3.0
 You can read this license here: https://www.gnu.org/licenses/gpl-3.0.en.html                                         
 or here: https://github.com/NaolShow/WolfLib/blob/master/LICENSE                                         
 or here: https://choosealicense.com/licenses/gpl-3.0/                                         
-                                         
+         
+Warning: in this case "Software" refers to this project (WolfLib)
+         
 ### Permissions:                                                                                  
 - This software and derivatives may be used for commercial purposes                                         
 - This software may be distributed                                                                                  
